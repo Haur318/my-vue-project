@@ -6,13 +6,14 @@
       placeholder="Search for Meals"
     />
 
-    <div class="flex justify-center gap-2 mt-5 italic">
+    <div class="flex flex-wrap justify-center gap-3 mt-5 italic">
       <router-link
         :to="{ name: 'byLetter', params: { letter } }"
         v-for="letter of letters"
         :key="letter"
       >
         {{ letter }}
+        <br />
       </router-link>
     </div>
   </div>
