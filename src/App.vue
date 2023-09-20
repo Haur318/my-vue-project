@@ -13,7 +13,7 @@
             font-bold
             text-gray-100
             md:text-2xl
-          ">Logo
+          "><img src="/src/assets/mealIcon.png" class="w-12 h-12 inline-block"/> Meals App
         </router-link>
         <!-- Mobile menu button -->
         <div @click="toggleNav" class="flex md:hidden">
