@@ -13,7 +13,7 @@
             font-bold
             text-gray-100
             md:text-2xl
-          "><img src="/src/assets/mealIcon.png" class="w-12 h-12 inline-block"/> Meals App
+          "><img src="/src/assets/mealIcon.png" class="w-12 h-12 inline-block" /> {{ iconTitle }}
         </router-link>
         <!-- Mobile menu button -->
         <div @click="toggleNav" class="flex md:hidden">
@@ -55,6 +55,7 @@ import { ref } from 'vue';
 export default {
   data() {
     return {
+      iconTitle: "Meals Web",
       navMenu: [
         {
           name: "home",
@@ -69,6 +70,21 @@ export default {
           title: "Meals By Ingredients"
         }
       ]
+    }
+  },
+  mounted() {
+    this.screenTitleType()
+    window.onresize = () => {
+      this.screenTitleType()
+    }
+  },
+  methods: {
+    screenTitleType() {
+      if (window.innerWidth <= 768) {
+        this.iconTitle = "Meals App"
+      } else {
+        this.iconTitle = "Meals Web"
+      }
     }
   },
   setup() {
