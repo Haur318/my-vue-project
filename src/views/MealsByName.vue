@@ -23,12 +23,13 @@ export default {
     return {
       meals: [],
       mealName: '',
-      mealSuggestion: false
+      mealSuggestion: false,
+      mealSuggestionSelected: false
     }
   },
   async mounted() {
     await axiosClient.get('/meals.json').then((res) => {
-      console.log('Meals: ' + res.data)
+      this.meals = [...res.data.meals]
     })
   },
   computed: {
@@ -43,8 +44,9 @@ export default {
   },
   watch: {
     mealName(value) {
-      this.mealSuggestion = !value == '' ? true : false
+      this.mealSuggestion = !value == '' && this.mealSuggestionSelected == false ? true : false
       this.filterNumeric()
+      this.mealSuggestionSelected = false
     }
   },
   methods: {
@@ -54,6 +56,8 @@ export default {
     },
     selectedMeal(value) {
       this.mealSuggestion = false
+      this.mealSuggestionSelected = true
+      this.mealName = value
     }
   }
 }
