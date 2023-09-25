@@ -9,8 +9,8 @@
   </div>
   <div class="px-9" v-if="mealSuggestion">
     <ul class="p-3 bg-slate-900 text-white" v-for="meal in filterMeals" :key="meal">
-      <li>
-        <a @click="selectedMeal(meal.strIngredient)">{{ meal.strIngredient }}</a>
+      <li @click="selectedMeal(meal.strMeal)">
+        <a>{{ meal.strMeal }}</a>
       </li>
     </ul>
   </div>
@@ -29,15 +29,21 @@ export default {
   },
   async mounted() {
     await axiosClient.get('/meals.json').then((res) => {
-      this.meals = [...res.data.meals]
+      // remove duplicates
+      let unique = res.data.meals.filter((obj, index) => {
+        return (
+          index === res.data.meals.findIndex((o) => obj.id === o.id && obj.strMeal === o.strMeal)
+        )
+      })
+      // pass object array to the array variables
+      this.meals = [...unique]
     })
   },
   computed: {
     filterMeals() {
       return this.meals.filter((item) => {
         return (
-          !this.mealName ||
-          item.strIngredient.toLowerCase().indexOf(this.mealName.toLowerCase()) > -1
+          !this.mealName || item.strMeal.toLowerCase().indexOf(this.mealName.toLowerCase()) > -1
         )
       })
     }
@@ -52,7 +58,7 @@ export default {
   methods: {
     filterNumeric() {
       // Replace non-numeric characters with an empty string
-      this.mealName = this.mealName.replace(/[^A-Za-z]/g, '')
+      this.mealName = this.mealName.replace(/[^A-Za-z ]/g, '')
     },
     selectedMeal(value) {
       this.mealSuggestion = false
