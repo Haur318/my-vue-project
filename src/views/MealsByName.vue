@@ -28,8 +28,7 @@ export default {
   },
   async mounted() {
     await axiosClient.get('/meals.json').then((res) => {
-      this.meals = [...res.data]
-      console.log('Meals: ' + this.meals)
+      console.log('Meals: ' + res.data)
     })
   },
   computed: {
