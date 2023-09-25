@@ -10,7 +10,7 @@
   <div class="px-9" v-if="mealSuggestion">
     <ul class="p-3 bg-slate-900 text-white" v-for="meal in filterMeals" :key="meal">
       <li>
-        <a>{{ meal.strIngredient }}</a>
+        <a @click="selectedMeal(meal.strIngredient)">{{ meal.strIngredient }}</a>
       </li>
     </ul>
   </div>
@@ -29,6 +29,7 @@ export default {
   async mounted() {
     await axiosClient.get('/meals.json').then((res) => {
       this.meals = [...res.data]
+      console.log('Meals: ' + this.meals)
     })
   },
   computed: {
@@ -44,12 +45,16 @@ export default {
   watch: {
     mealName(value) {
       this.mealSuggestion = !value == '' ? true : false
+      this.filterNumeric()
     }
   },
   methods: {
     filterNumeric() {
       // Replace non-numeric characters with an empty string
       this.mealName = this.mealName.replace(/[^A-Za-z]/g, '')
+    },
+    selectedMeal(value) {
+      this.mealSuggestion = false
     }
   }
 }
