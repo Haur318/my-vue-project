@@ -6,6 +6,7 @@
         class="rounded-l-lg border-2 border-gray-300 w-full p-3"
         placeholder="Search for Meals"
         v-model="mealName"
+        v-on:keyup.enter="selectedMeal(mealName)"
       />
       <button
         @click="selectedMeal(mealName)"
@@ -22,8 +23,44 @@
         </li>
       </ul>
     </div>
-    <div v-for="filteredMeal in filteredMeals" :key="filteredMeal">
-      {{ filteredMeal.strMeal }}
+    <div class="mt-3 grid grid-cols-1 md:grid-cols-3 gap-5 pt-2">
+      <div
+        v-for="filteredMeal in filteredMeals"
+        :key="filteredMeal"
+        class="bg-white shadow rounded-xl"
+      >
+        <router-link to="/">
+          <img
+            :src="filteredMeal.strMealThumb"
+            :alt="filteredMeal.strMeal"
+            class="rounded-t-xl w-full h-48 object-cover"
+          />
+        </router-link>
+        <div class="px-4 pt-3 pb-5">
+          <h3 class="font-bold text-lg truncate">
+            {{ filteredMeal.strMeal }}
+          </h3>
+          <p class="mb-2">
+            <strong>Category : </strong>
+            {{ filteredMeal.strCategory ? filteredMeal.strCategory : 'N/A' }}
+            <br />
+            <strong>Area : </strong>
+            {{ filteredMeal.strArea ? filteredMeal.strArea : 'N/A' }}
+            <br />
+            <strong>Type : </strong>
+            {{ filteredMeal.strTags ? filteredMeal.strTags : 'N/A' }}
+          </p>
+          <div class="flex justify-between mt-3">
+            <a
+              :href="filteredMeal.strYoutube"
+              target="_blank"
+              class="px-3 py-2 rounded-lg border bg-red-500 hover:bg-red-600 text-white transition-colors"
+              >YouTube</a
+            >
+            <img class="w-10" src="/src/assets/bestIcon.png" />
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -56,11 +93,13 @@ export default {
   computed: {
     mealsSelection() {
       // browse selection filtering based on input value
-      return this.meals.filter((item) => {
+      let result = this.meals.filter((item) => {
         return (
           !this.mealName || item.strMeal.toLowerCase().indexOf(this.mealName.toLowerCase()) > -1
         )
       })
+
+      return result.length == 0 ? [{ strMeal: '*** NO RESULT ***' }] : result
     }
   },
   watch: {
