@@ -6,7 +6,6 @@
         class="rounded-l-lg border-2 border-gray-300 w-full p-3"
         placeholder="Search for Ingredients"
         v-model="ingredientName"
-        v-on:keyup.enter="selectedMeal(ingredientName)"
       />
       <button
         @click="selectedMeal(ingredientName)"

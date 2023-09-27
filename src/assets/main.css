@@ -2,11 +2,8 @@
 
 #app {
   margin: 0 auto;
-  font-weight: normal;
-}
 
-body {
-  background-color: rgb(209, 224, 224);
+  font-weight: normal;
 }
 
 a,
@@ -24,6 +21,7 @@ a,
 
 @media (max-width: 768px) {
   body {
+    background-color: rgb(239, 245, 245);
     font-size: 12px;
   }
   /*
