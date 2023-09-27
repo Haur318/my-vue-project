@@ -1,6 +1,6 @@
 <template>
   <div class="bg-gradient-to-r from-teal-500 to-blue-800">
-    <nav class="container px-6 py-4 mx-auto md:flex md:justify-between md:items-center">
+    <nav class="px-6 py-4 mx-auto md:flex md:justify-between md:items-center">
       <div class="flex items-center justify-between">
         <router-link to="/" class="text-xl font-bold text-gray-100 md:text-2xl"
           ><img src="/src/assets/mealIcon.png" class="w-12 h-12 inline-block" /> {{ iconTitle }}
