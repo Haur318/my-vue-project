@@ -10,7 +10,7 @@
       />
       <button
         @click="selectedMeal(mealName)"
-        class="flex items-center gap-3 w-[8rem] rounded-r-lg px-7 bg-gradient-to-r from-blue-800 to-teal-500 text-white font-bold border border-gray-300 text-[14px]"
+        class="flex items-center gap-3 w-[8rem] rounded-r-lg pl-3 pr-7 bg-gradient-to-r from-teal-500 to-blue-800 text-white font-bold border border-gray-300 text-[14px]"
       >
         Search
         <img class="w-5" src="/src/assets/searchIcon.png" />
@@ -23,42 +23,57 @@
         </li>
       </ul>
     </div>
-    <div class="mt-3 grid grid-cols-1 md:grid-cols-3 gap-5 pt-2">
-      <div
-        v-for="filteredMeal in filteredMeals"
-        :key="filteredMeal"
-        class="bg-white shadow rounded-xl"
-      >
-        <router-link to="/">
-          <img
-            :src="filteredMeal.strMealThumb"
-            :alt="filteredMeal.strMeal"
-            class="rounded-t-xl w-full h-48 object-cover"
-          />
-        </router-link>
-        <div class="px-4 pt-3 pb-5">
-          <h3 class="font-bold text-lg truncate">
-            {{ filteredMeal.strMeal }}
-          </h3>
-          <p class="mb-2">
-            <strong>Category : </strong>
-            {{ filteredMeal.strCategory ? filteredMeal.strCategory : 'N/A' }}
-            <br />
-            <strong>Area : </strong>
-            {{ filteredMeal.strArea ? filteredMeal.strArea : 'N/A' }}
-            <br />
-            <strong>Type : </strong>
-            {{ filteredMeal.strTags ? filteredMeal.strTags : 'N/A' }}
-          </p>
-          <div class="flex justify-between mt-3">
-            <a
-              :href="filteredMeal.strYoutube"
-              target="_blank"
-              class="px-3 py-2 rounded-lg border bg-red-500 hover:bg-red-600 text-white transition-colors"
-              >YouTube</a
-            >
-            <img class="w-10" src="/src/assets/bestIcon.png" />
+
+    <div class="md:grid md:place-items-center">
+      <div v-if="filteredMeals.length > 0" class="mt-3 grid grid-cols-1 md:grid-cols-3 gap-5 pt-2">
+        <div
+          v-for="filteredMeal in filteredMeals"
+          :key="filteredMeal"
+          class="bg-white shadow rounded-xl"
+        >
+          <router-link to="/">
+            <img
+              :src="filteredMeal.strMealThumb"
+              :alt="filteredMeal.strMeal"
+              class="rounded-t-xl w-full h-64 md:h-auto object-cover"
+            />
+          </router-link>
+          <div
+            class="px-4 pt-3 pb-8 bg-gradient-to-r from-teal-500 to-blue-800 text-white rounded-b-lg"
+          >
+            <h3 class="font-bold text-xl md:text-3xl truncate pb-3">
+              {{ filteredMeal.strMeal }}
+            </h3>
+            <p class="mb-2 text-base md:text-xl">
+              <strong>Category : </strong>
+              {{ filteredMeal.strCategory ? filteredMeal.strCategory : 'N/A' }}
+              <br />
+              <strong>Area : </strong>
+              {{ filteredMeal.strArea ? filteredMeal.strArea : 'N/A' }}
+              <br />
+              <strong>Type : </strong>
+              {{ filteredMeal.strTags ? filteredMeal.strTags : 'N/A' }}
+            </p>
+            <div class="w-12 md:w-[60px] mt-8 hover:drop-shadow-xl">
+              <a
+                :href="filteredMeal.strYoutube"
+                target="_blank"
+                class="px-6 py-2.5 font-bold rounded-lg border bg-gradient-to-r from-red-500 to-red-700 text-white transition-colors text-lg md:text-2xl text-center"
+                >YouTube</a
+              >
+            </div>
           </div>
+        </div>
+      </div>
+      <div v-else class="grid place-items-center bg-white md:w-2/4 mt-20 rounded-lg">
+        <img class="md:w-1/2 rounded-lg" src="/src/assets/noResultImg.jpg" />
+        <div
+          class="md:w-full md:p-10 bg-gradient-to-r from-teal-500 to-blue-800 text-white rounded-b-lg text-center"
+        >
+          <h3 class="font-bold text-lg md:text-4xl">Result Not found</h3>
+          <h1 class="text-2 p-4 md:text-2xl italic text-white">
+            Whoops ... this information is not available for a moment
+          </h1>
         </div>
       </div>
     </div>
@@ -93,13 +108,11 @@ export default {
   computed: {
     mealsSelection() {
       // browse selection filtering based on input value
-      let result = this.meals.filter((item) => {
+      return this.meals.filter((item) => {
         return (
           !this.mealName || item.strMeal.toLowerCase().indexOf(this.mealName.toLowerCase()) > -1
         )
       })
-
-      return result.length == 0 ? [{ strMeal: '*** NO RESULT ***' }] : result
     }
   },
   watch: {
@@ -137,6 +150,7 @@ export default {
       this.filteredMeals = this.meals.filter((item) => {
         return item.strMeal.toLowerCase().indexOf(this.mealName.toLowerCase()) > -1
       })
+      console.log(this.filteredMeals)
     }
   }
 }
