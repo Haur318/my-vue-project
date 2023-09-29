@@ -2,6 +2,7 @@
   <div class="p-8 pb-0">
     <div class="flex">
       <input
+        id="input"
         type="text"
         class="rounded-l-lg border-2 border-gray-300 w-full p-3"
         placeholder="Search for Meals"
@@ -24,7 +25,7 @@
       </ul>
     </div>
 
-    <div class="md:grid md:place-items-center">
+    <div :class="filteredMeals.length == 0 ? 'md:grid md:place-items-center' : ''">
       <div v-if="filteredMeals.length > 0" class="mt-3 grid grid-cols-1 md:grid-cols-3 gap-5 pt-2">
         <div
           v-for="filteredMeal in filteredMeals"
@@ -35,7 +36,7 @@
             <img
               :src="filteredMeal.strMealThumb"
               :alt="filteredMeal.strMeal"
-              class="rounded-t-xl w-full h-64 md:h-auto object-cover"
+              class="rounded-t-xl w-full h-64 md:h-72 object-cover"
             />
           </router-link>
           <div
@@ -65,10 +66,10 @@
           </div>
         </div>
       </div>
-      <div v-else class="grid place-items-center bg-white md:w-2/4 mt-20 rounded-lg">
+      <div v-else class="grid place-items-center bg-white md:w-2/4 mt-8 rounded-lg">
         <img class="md:w-1/2 rounded-lg" src="/src/assets/noResultImg.jpg" />
         <div
-          class="md:w-full md:p-10 bg-gradient-to-r from-teal-500 to-blue-800 text-white rounded-b-lg text-center"
+          class="w-full md:pl-5 md:pr-5 md:pt-5 md:pb-1 bg-gradient-to-r from-teal-500 to-blue-800 text-white rounded-b-lg text-center"
         >
           <h3 class="font-bold text-lg md:text-4xl">Result Not found</h3>
           <h1 class="text-2 p-4 md:text-2xl italic text-white">
@@ -81,7 +82,7 @@
 </template>
 <script>
 import axiosClient from '../axiosClient'
-
+import { useRoute } from 'vue-router'
 export default {
   data() {
     return {
@@ -138,7 +139,6 @@ export default {
       this.mealName = this.mealName.replace(/[^A-Za-z ]/g, '')
     },
     selectedMeal(value) {
-      console.log(value)
       // close the browse suggestion
       this.mealSuggestion = false
       this.mealSuggestionSelected = true
@@ -150,7 +150,9 @@ export default {
       this.filteredMeals = this.meals.filter((item) => {
         return item.strMeal.toLowerCase().indexOf(this.mealName.toLowerCase()) > -1
       })
-      console.log(this.filteredMeals)
+
+      // search input become blur
+      window.document.getElementById('input').blur()
     }
   }
 }

@@ -57,6 +57,11 @@ export default {
       ]
     }
   },
+  watch: {
+    $route() {
+      this.showMenu = !this.showMenu
+    }
+  },
   mounted() {
     this.screenTitleType()
     window.onresize = () => {
