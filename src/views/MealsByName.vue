@@ -1,6 +1,6 @@
 <template>
   <div class="p-8 pb-0">
-    <div class="flex">
+    <div class="flex" data-aos="zoom-in" data-aos-duration="1000">
       <input
         id="input"
         type="text"
@@ -30,7 +30,9 @@
         <div
           v-for="filteredMeal in filteredMeals"
           :key="filteredMeal"
-          class="bg-white shadow rounded-xl"
+          class="shadow rounded-xl"
+          data-aos="fade-in"
+          data-aos-duration="1000"
         >
           <router-link to="/">
             <img
@@ -42,7 +44,7 @@
           <div
             class="px-4 pt-3 pb-8 bg-gradient-to-r from-teal-500 to-blue-800 text-white rounded-b-lg"
           >
-            <h3 class="font-bold text-xl md:text-3xl truncate pb-3">
+            <h3 class="font-bold text-xl md:text-2xl truncate pb-3">
               {{ filteredMeal.strMeal }}
             </h3>
             <p class="mb-2 text-base md:text-xl">
@@ -66,7 +68,7 @@
           </div>
         </div>
       </div>
-      <div v-else class="grid place-items-center bg-white md:w-2/4 mt-8 rounded-lg">
+      <div v-else class="grid place-items-center bg-white md:w-2/4 mt-8 rounded-lg" data-aos="fade-down">
         <img class="md:w-1/2 rounded-lg" src="/src/assets/noResultImg.jpg" />
         <div
           class="w-full md:pl-5 md:pr-5 md:pt-5 md:pb-1 bg-gradient-to-r from-teal-500 to-blue-800 text-white rounded-b-lg text-center"
@@ -82,7 +84,6 @@
 </template>
 <script>
 import axiosClient from '../axiosClient'
-import { useRoute } from 'vue-router'
 export default {
   data() {
     return {
