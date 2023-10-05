@@ -1,18 +1,10 @@
 <template>
   <div class="p-8 pb-0">
     <div class="flex" data-aos="zoom-in" data-aos-duration="1000">
-      <input
-        id="input"
-        type="text"
-        class="rounded-l-lg border-2 border-gray-300 w-full p-3"
-        placeholder="Search for Meals"
-        v-model="mealName"
-        v-on:keyup.enter="selectedMeal(mealName)"
-      />
-      <button
-        @click="selectedMeal(mealName)"
-        class="flex items-center gap-3 w-[8rem] rounded-r-lg pl-3 pr-7 bg-gradient-to-r from-teal-500 to-blue-800 text-white font-bold border border-gray-300 text-[14px]"
-      >
+      <input id="input" type="text" class="rounded-l-lg border-2 border-gray-300 w-full p-3"
+        placeholder="Search for Meals" v-model="mealName" v-on:keyup.enter="selectedMeal(mealName)" />
+      <button @click="selectedMeal(mealName)"
+        class="flex items-center gap-3 w-[8rem] rounded-r-lg pl-3 pr-7 bg-gradient-to-r from-yellow-500 to-amber-600 text-white font-bold border border-gray-300 text-[14px]">
         Search
         <img class="w-5" src="/src/assets/searchIcon.png" />
       </button>
@@ -27,23 +19,13 @@
 
     <div :class="filteredMeals.length == 0 ? 'md:grid md:place-items-center' : ''">
       <div v-if="filteredMeals.length > 0" class="mt-3 grid grid-cols-1 md:grid-cols-3 gap-5 pt-2">
-        <div
-          v-for="filteredMeal in filteredMeals"
-          :key="filteredMeal"
-          class="shadow rounded-xl"
-          data-aos="fade-in"
-          data-aos-duration="1000"
-        >
+        <div v-for="filteredMeal in filteredMeals" :key="filteredMeal" class="shadow rounded-xl" data-aos="fade-in"
+          data-aos-duration="1000">
           <router-link to="/">
-            <img
-              :src="filteredMeal.strMealThumb"
-              :alt="filteredMeal.strMeal"
-              class="rounded-t-xl w-full h-64 md:h-72 object-cover"
-            />
+            <img :src="filteredMeal.strMealThumb" :alt="filteredMeal.strMeal"
+              class="rounded-t-xl w-full h-64 md:h-72 object-cover" />
           </router-link>
-          <div
-            class="px-4 pt-3 pb-8 bg-gradient-to-r from-teal-500 to-blue-800 text-white rounded-b-lg"
-          >
+          <div class="px-4 pt-3 pb-8 bg-gradient-to-r from-yellow-500 to-amber-600 text-white rounded-b-lg">
             <h3 class="font-bold text-xl md:text-2xl truncate pb-3">
               {{ filteredMeal.strMeal }}
             </h3>
@@ -58,12 +40,8 @@
               {{ filteredMeal.strTags ? filteredMeal.strTags : 'N/A' }}
             </p>
             <div class="w-12 md:w-[60px] mt-8 hover:drop-shadow-xl">
-              <a
-                :href="filteredMeal.strYoutube"
-                target="_blank"
-                class="px-6 py-2.5 font-bold rounded-lg border bg-gradient-to-r from-red-500 to-red-700 text-white transition-colors text-lg md:text-2xl text-center"
-                >YouTube</a
-              >
+              <a :href="filteredMeal.strYoutube" target="_blank"
+                class="px-6 py-2.5 font-bold rounded-lg border bg-gradient-to-r from-red-500 to-red-700 text-white transition-colors text-lg md:text-2xl text-center">YouTube</a>
             </div>
           </div>
         </div>
@@ -71,8 +49,7 @@
       <div v-else class="grid place-items-center bg-white md:w-2/4 mt-8 rounded-lg" data-aos="fade-down">
         <img class="md:w-1/2 rounded-lg" src="/src/assets/noResultImg.jpg" />
         <div
-          class="w-full md:pl-5 md:pr-5 md:pt-5 md:pb-1 bg-gradient-to-r from-teal-500 to-blue-800 text-white rounded-b-lg text-center"
-        >
+          class="w-full md:pl-5 md:pr-5 md:pt-5 md:pb-1 bg-gradient-to-r from-yellow-500 to-amber-600 text-white rounded-b-lg text-center">
           <h3 class="font-bold text-lg md:text-4xl">Result Not found</h3>
           <h1 class="text-2 p-4 md:text-2xl italic text-white">
             Whoops ... this information is not available for a moment

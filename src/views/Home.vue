@@ -1,4 +1,6 @@
 <template v-if="mealsByCategory">
+  <div><img src="/src/assets/homePage1.png" /></div>
+  <!--
   <div v-for="meals in mealsByCategory" :key="meals">
     <h3 class="text-xl font-bold px-5 py-2" data-aos="fade-left" data-aos-duration="1000">
       {{ meals[0].strCategory ? meals[0].strCategory : 'N/A' }}
@@ -11,6 +13,7 @@
       </div>
     </div>
   </div>
+-->
 </template>
 <script>
 import axiosClient from '../axiosClient'

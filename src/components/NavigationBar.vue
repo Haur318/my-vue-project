@@ -1,9 +1,10 @@
 <template>
-  <div class="bg-gradient-to-r from-teal-500 to-blue-800">
+  <div class="bg-gradient-to-r from-yellow-500 to-amber-600">
     <nav class="px-6 py-4 mx-auto md:flex md:justify-between md:items-center">
       <div class="flex items-center justify-between">
-        <router-link @click="showMenu = false" to="/" class="text-xl font-bold text-gray-100 md:text-2xl"><img
-            src="/src/assets/mealIcon.png" class="w-12 h-12 inline-block" /> {{ iconTitle }}
+        <router-link @click="showMenu = false" to="/" class="text-2xl font-bold text-gray-100 md:text-2xl"><img
+            src="/src/assets/mealIcon.png" class="w-12 h-12 inline-block" />
+          {{ iconTitle }}
         </router-link>
         <!-- Mobile menu button -->
         <div @click="toggleNav" class="flex md:hidden">
@@ -20,7 +21,7 @@
       <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
       <ul :class="showMenu ? 'flex' : 'hidden'"
         class="flex-col mt-3 space-y-4 md:flex md:space-y-0 md:flex-row md:items-center md:space-x-10 md:mt-0">
-        <li class="text-gray-100" v-for="(navItem, i) in navMenu" :key="navItem">
+        <li class="text-gray-100 text-lg" v-for="(navItem, i) in navMenu" :key="navItem">
           <router-link :to="{ name: navMenu[i].name }" class="block p-3">
             {{ navMenu[i].title }}
           </router-link>
