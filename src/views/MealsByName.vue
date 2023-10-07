@@ -19,13 +19,12 @@
 
     <div :class="filteredMeals.length == 0 ? 'md:grid md:place-items-center' : ''">
       <div v-if="filteredMeals.length > 0" class="mt-3 grid grid-cols-1 md:grid-cols-3 gap-5 pt-2">
-        <div v-for="filteredMeal in filteredMeals" :key="filteredMeal" class="shadow rounded-xl" data-aos="fade-in"
-          data-aos-duration="1000">
+        <div v-for="filteredMeal in filteredMeals" :key="filteredMeal" class="shadow rounded-xl">
           <router-link to="/">
             <img :src="filteredMeal.strMealThumb" :alt="filteredMeal.strMeal"
               class="rounded-t-xl w-full h-64 md:h-72 object-cover" />
           </router-link>
-          <div class="px-4 pt-3 pb-8 bg-gradient-to-r from-yellow-500 to-amber-600 text-white rounded-b-lg">
+          <div class="px-4 pt-3 pb-3 bg-gradient-to-r from-yellow-500 to-amber-600 text-white rounded-b-lg">
             <h3 class="font-bold text-xl md:text-2xl truncate pb-3">
               {{ filteredMeal.strMeal }}
             </h3>
@@ -39,10 +38,6 @@
               <strong>Type : </strong>
               {{ filteredMeal.strTags ? filteredMeal.strTags : 'N/A' }}
             </p>
-            <div class="w-12 md:w-[60px] mt-8 hover:drop-shadow-xl">
-              <a :href="filteredMeal.strYoutube" target="_blank"
-                class="px-6 py-2.5 font-bold rounded-lg border bg-gradient-to-r from-red-500 to-red-700 text-white transition-colors text-lg md:text-2xl text-center">YouTube</a>
-            </div>
           </div>
         </div>
       </div>

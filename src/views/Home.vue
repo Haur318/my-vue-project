@@ -1,8 +1,15 @@
 <template v-if="mealsByCategory">
-  <div><img src="/src/assets/homePage1.png" /></div>
-  <!--
-  <div v-for="meals in mealsByCategory" :key="meals">
-    <h3 class="text-xl font-bold px-5 py-2" data-aos="fade-left" data-aos-duration="1000">
+  <div class="mb-3">
+    <img src="/src/assets/homePage1.png" />
+  </div>
+  <div class="grid place-items-center p-2 mb-3">
+    <h3 class="font-bold text-lg">Recipes By Category</h3>
+    <h1 class="italic text-center">Excepteur sint occaecat cupidatat non qui proident, sunt culpa qui officia
+      deserunmollit anim id
+      est laborum.</h1>
+  </div>
+  <div class="bg-gradient-to-r from-yellow-500 to-amber-600 pt-5" v-for="meals in mealsByCategory" :key="meals">
+    <h3 class="text-xl text-white font-bold px-5 py-2" data-aos="fade-left" data-aos-duration="1000">
       {{ meals[0].strCategory ? meals[0].strCategory : 'N/A' }}
     </h3>
     <div class="flex flex-nowrap overflow-x-auto no-scrollbar" data-aos="zoom-in" data-aos-duration="1000">
@@ -13,7 +20,6 @@
       </div>
     </div>
   </div>
--->
 </template>
 <script>
 import axiosClient from '../axiosClient'

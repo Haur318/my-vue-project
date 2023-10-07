@@ -2,7 +2,7 @@
   <div class="bg-gradient-to-r from-yellow-500 to-amber-600">
     <nav class="px-6 py-4 mx-auto md:flex md:justify-between md:items-center">
       <div class="flex items-center justify-between">
-        <router-link @click="showMenu = false" to="/" class="text-2xl font-bold text-gray-100 md:text-2xl"><img
+        <router-link @click="showMenu = false" to="/" class="text-2xl font-bold text-white italic md:text-2xl"><img
             src="/src/assets/mealIcon.png" class="w-12 h-12 inline-block" />
           {{ iconTitle }}
         </router-link>
