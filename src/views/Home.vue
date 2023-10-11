@@ -12,10 +12,12 @@
     <h3 class="text-xl text-white font-bold px-5 py-2" data-aos="fade-left" data-aos-duration="1000">
       {{ meals[0].strCategory ? meals[0].strCategory : 'N/A' }}
     </h3>
-    <div class="flex flex-nowrap overflow-x-auto no-scrollbar" data-aos="zoom-in" data-aos-duration="1000">
-      <div v-for="meal in meals" :key="meal" class="p-3 m-2 flex-shrink-0">
+    <div class="grid grid-flow-col auto-cols-max overflow-x-auto no-scrollbar" data-aos="zoom-in"
+      data-aos-duration="1000">
+      <div v-for="meal in meals" :key="meal" class="p-3 m-2 text-center text-white font-bold">
         <router-link to="/">
-          <img :src="meal.strMealThumb" :alt="meal.strMeal" class="rounded-lg w-50 h-32 md:h-72" />
+          <img :src="meal.strMealThumb" :alt="meal.strMeal" class="rounded-lg w-50 h-44 md:h-72" />
+          <div class=""> {{ meal.strMeal }}</div>
         </router-link>
       </div>
     </div>
