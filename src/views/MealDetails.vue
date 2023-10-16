@@ -11,6 +11,10 @@
       <div><strong class="font-bold">Tags:</strong> {{ meal.strTags }}</div>
     </div>
 
+    <div class="my-3">
+      {{ meal.strInstructions }}
+    </div>
+
     <div class="grid grid-cols-1 sm:grid-cols-2">
       <div>
         <h2 class="text-2xl font-semibold mb-2">Ingredients</h2>
@@ -33,12 +37,24 @@
         </ul>
       </div>
     </div>
+    <div class="grid grid-cols-1 mt-4">
+      <YoutubeButton :href="meal.strYoutube">Go to Youtube</YoutubeButton>
+      <ViewSourceButton v-if="meal.strSource" :href="meal.strSource"
+        >View Original Source</ViewSourceButton
+      >
+    </div>
   </div>
 </template>
 <script>
 import axiosClient from '../axiosClient'
+import YoutubeButton from '../components/YTButton.vue'
+import ViewSourceButton from '../components/ViewSourceButton.vue'
 
 export default {
+  components: {
+    YoutubeButton,
+    ViewSourceButton
+  },
   data() {
     return {
       meal: []

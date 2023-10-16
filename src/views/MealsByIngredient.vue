@@ -10,7 +10,7 @@
       />
       <button
         @click="selectedMeal(ingredientName)"
-        class="flex items-center gap-3 w-[8rem] rounded-r-lg px-7 bg-gradient-to-r from-blue-800 to-teal-500 text-white font-bold border border-gray-300 text-[14px]"
+        class="flex items-center gap-3 w-[8rem] rounded-r-lg pl-3 pr-7 bg-gradient-to-r from-yellow-500 to-amber-600 text-white font-bold border border-gray-300 text-[14px]"
       >
         Search
         <img class="w-5" src="/src/assets/searchIcon.png" />
@@ -27,9 +27,15 @@
         </li>
       </ul>
     </div>
-    <div v-for="filteredIngredient in filteredIngredients" :key="filteredIngredient">
-      {{ filteredIngredient.strIngredient }}
-    </div>
+    <router-link
+      :to="{ name: 'byIngredient', param: { ingredient: ingredient.idIngredient } }"
+      v-for="ingredient in filteredIngredients"
+      :key="ingredient"
+      class="block bg-white rounded p-3 mt-2 mb-3 shadow"
+    >
+      <h3 class="text-2xl font-bold mb-2">{{ ingredient.strIngredient }}</h3>
+      <p>{{ ingredient.strDescription }}</p>
+    </router-link>
   </div>
 </template>
 <script>
