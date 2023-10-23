@@ -51,8 +51,8 @@ export default {
           title: 'Search Meals'
         },
         {
-          name: 'byIngredient',
-          title: 'Meals By Ingredients'
+          name: 'about',
+          title: 'About Us'
         }
       ]
     }
